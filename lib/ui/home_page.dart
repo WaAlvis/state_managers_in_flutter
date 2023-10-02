@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:state_manager_in_flutter/providers/cat_provider.dart';
 import 'package:state_manager_in_flutter/ui/cats_list_page.dart';
 
 import '../providers/counter_provider.dart';
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CounterProvider counterProvider = context.watch<CounterProvider>();
+    
 
     return Scaffold(
       appBar: AppBar(
@@ -35,12 +37,14 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: Column(
+        
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               FloatingActionButton(
+                heroTag: 'btn_increment',
                 onPressed: () => counterProvider.incrementCounter(),
                 tooltip: 'Increment',
                 child: const Icon(Icons.add),
@@ -49,6 +53,7 @@ class HomePage extends StatelessWidget {
                 width: 12,
               ),
               FloatingActionButton(
+                heroTag: 'btn_reset',
                 onPressed: () => counterProvider.resetCounter(),
                 tooltip: 'Reset',
                 child: const Icon(Icons.restart_alt_rounded),
@@ -56,6 +61,7 @@ class HomePage extends StatelessWidget {
             ],
           ),
           ElevatedButton.icon(
+            
             
               onPressed: () {
                 Navigator.pushNamed(
