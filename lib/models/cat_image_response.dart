@@ -41,26 +41,5 @@ class CatImageResponse {
   // };
 }
 
-class Weight {
-  String imperial;
-  String metric;
 
-  Weight({
-    required this.imperial,
-    required this.metric,
-  });
 
-  factory Weight.fromJson(String str) => Weight.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Weight.fromMap(Map<String, dynamic> json) => Weight(
-        imperial: json["imperial"],
-        metric: json["metric"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "imperial": imperial,
-        "metric": metric,
-      };
-}

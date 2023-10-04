@@ -9,14 +9,40 @@ class CatsListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CatProvider catProvider = context.watch<CatProvider>();
+    PetsProvider catProvider = context.watch<PetsProvider>();
 
     return Scaffold(
-      body: ListView.builder(
-        itemCount: catProvider.catList.length,
-        itemBuilder: (BuildContext context, int i) {
-          return Image.network(catProvider.catList[i].url);
-        },
+      appBar: AppBar(
+        leading: const Icon(Icons.menu),
+        actions: const [
+          CircleAvatar(
+            backgroundImage: AssetImage('assets/images/pet_not_found.jpg'),
+          ),
+          SizedBox(width: 20,)
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: ListView.separated(
+          scrollDirection: Axis.vertical,
+          itemCount: catProvider.catList.length,
+          itemBuilder: (BuildContext context, int i) {
+            return ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: FadeInImage(
+                fit: BoxFit.cover,
+                height: 300,
+                width: double.infinity,
+                placeholder:
+                    const AssetImage('assets/images/pet_not_found.jpg'),
+                image: NetworkImage(catProvider.catList[i].url),
+              ),
+            );
+          },
+          separatorBuilder: (BuildContext context, int index) => const SizedBox(
+            height: 12,
+          ),
+        ),
       ),
     );
   }

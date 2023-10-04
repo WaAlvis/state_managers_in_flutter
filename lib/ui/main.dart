@@ -21,8 +21,8 @@ class AppStateProvider extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => CounterProvider(),
         ),
-        ChangeNotifierProvider<CatProvider>(
-          create: (_) => CatProvider(),
+        ChangeNotifierProvider<PetsProvider>(
+          create: (_) => PetsProvider(),
           lazy: false,
         )
       ],
